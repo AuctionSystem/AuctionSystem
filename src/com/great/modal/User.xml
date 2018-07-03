@@ -4,13 +4,17 @@
 
 <!-- 增 -->
 	<insert id="addUser" parameterType="com.great.modal.User">
-	
+		<selectKey keyProperty="userId" order="BEFORE" resultType="java.lang.Integer"> 
+		select USERSEQ.NEXTVAL from dual
+		</selectKey>
+		insert into TBUSER (userId,stateId,cityId,roleId, userName,userPwd,sex,phone,address)
+		Values(#{userId},#{stateId},#{cityId},#{roleId},#{userName},#{userPwd},#{sex},#{phone},#{address})
 	</insert>
-	
+
 
 <!-- 删 -->
 	<delete id="deleteUser" parameterType="int">
-		delete from TBUSER where 水电费 水电费
+		delete from TBUSER where userId=#{userId}
 	</delete>
 
 <!-- 改 -->
