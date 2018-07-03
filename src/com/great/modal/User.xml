@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.great.mapper.UserMapper">
+
+<!-- 增 -->
+	<insert id="addUser" parameterType="com.great.modal.User">
+	
+	</insert>
+	
+
+<!-- 删 -->
+	<delete id="deleteUser" parameterType="int">
+		delete from TBUSER where 
+	</delete>
+
+<!-- 改 -->
+
+
+
+<!-- 查 -->
+
+
+</mapper>
