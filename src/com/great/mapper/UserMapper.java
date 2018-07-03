@@ -4,5 +4,9 @@ import com.great.modal.User;
 
 public interface UserMapper {
 
-	public void addUser(User user);
+	public void addUser(User user);      // 增加用户
+	
+	public void deleteUser(int userId);  // 删除指定用户
+	
+	public void changeUserStates(Tb);
 }
