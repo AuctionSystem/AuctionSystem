@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.TbpowerMapper" >
+  <resultMap id="BaseResultMap" type="com.health.entity.Tbpower" >
+    <id column="POWERID" property="powerid" jdbcType="DECIMAL" />
+    <result column="MENUID" property="menuid" jdbcType="DECIMAL" />
+    <result column="POWERNAME" property="powername" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    POWERID, MENUID, POWERNAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.health.entity.TbpowerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TBPOWER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TBPOWER
+    where POWERID = #{powerid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TBPOWER
+    where POWERID = #{powerid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.health.entity.TbpowerExample" >
+    delete from TBPOWER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.health.entity.Tbpower" >
+    insert into TBPOWER (POWERID, MENUID, POWERNAME
+      )
+    values (#{powerid,jdbcType=DECIMAL}, #{menuid,jdbcType=DECIMAL}, #{powername,jdbcType=OTHER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.health.entity.Tbpower" >
+    insert into TBPOWER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="powerid != null" >
+        POWERID,
+      </if>
+      <if test="menuid != null" >
+        MENUID,
+      </if>
+      <if test="powername != null" >
+        POWERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="powerid != null" >
+        #{powerid,jdbcType=DECIMAL},
+      </if>
+      <if test="menuid != null" >
+        #{menuid,jdbcType=DECIMAL},
+      </if>
+      <if test="powername != null" >
+        #{powername,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.health.entity.TbpowerExample" resultType="java.lang.Integer" >
+    select count(*) from TBPOWER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TBPOWER
+    <set >
+      <if test="record.powerid != null" >
+        POWERID = #{record.powerid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.menuid != null" >
+        MENUID = #{record.menuid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.powername != null" >
+        POWERNAME = #{record.powername,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TBPOWER
+    set POWERID = #{record.powerid,jdbcType=DECIMAL},
+      MENUID = #{record.menuid,jdbcType=DECIMAL},
+      POWERNAME = #{record.powername,jdbcType=OTHER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.health.entity.Tbpower" >
+    update TBPOWER
+    <set >
+      <if test="menuid != null" >
+        MENUID = #{menuid,jdbcType=DECIMAL},
+      </if>
+      <if test="powername != null" >
+        POWERNAME = #{powername,jdbcType=OTHER},
+      </if>
+    </set>
+    where POWERID = #{powerid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.health.entity.Tbpower" >
+    update TBPOWER
+    set MENUID = #{menuid,jdbcType=DECIMAL},
+      POWERNAME = #{powername,jdbcType=OTHER}
+    where POWERID = #{powerid,jdbcType=DECIMAL}
+  </update>
+</mapper>

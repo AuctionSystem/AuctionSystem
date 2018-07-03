@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.health.mapper.TbauctionMapper" >
+  <resultMap id="BaseResultMap" type="com.health.entity.Tbauction" >
+    <id column="AUCTIONID" property="auctionid" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="GOODSID" property="goodsid" jdbcType="DECIMAL" />
+    <result column="AUTIONDATE" property="autiondate" jdbcType="OTHER" />
+    <result column="USERPRICE" property="userprice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AUCTIONID, USERID, GOODSID, AUTIONDATE, USERPRICE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.health.entity.TbauctionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TBAUCTION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from TBAUCTION
+    where AUCTIONID = #{auctionid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from TBAUCTION
+    where AUCTIONID = #{auctionid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.health.entity.TbauctionExample" >
+    delete from TBAUCTION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.health.entity.Tbauction" >
+    insert into TBAUCTION (AUCTIONID, USERID, GOODSID, 
+      AUTIONDATE, USERPRICE)
+    values (#{auctionid,jdbcType=DECIMAL}, #{userid,jdbcType=DECIMAL}, #{goodsid,jdbcType=DECIMAL}, 
+      #{autiondate,jdbcType=OTHER}, #{userprice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.health.entity.Tbauction" >
+    insert into TBAUCTION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="auctionid != null" >
+        AUCTIONID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="goodsid != null" >
+        GOODSID,
+      </if>
+      <if test="autiondate != null" >
+        AUTIONDATE,
+      </if>
+      <if test="userprice != null" >
+        USERPRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="auctionid != null" >
+        #{auctionid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=DECIMAL},
+      </if>
+      <if test="autiondate != null" >
+        #{autiondate,jdbcType=OTHER},
+      </if>
+      <if test="userprice != null" >
+        #{userprice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.health.entity.TbauctionExample" resultType="java.lang.Integer" >
+    select count(*) from TBAUCTION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TBAUCTION
+    <set >
+      <if test="record.auctionid != null" >
+        AUCTIONID = #{record.auctionid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userid != null" >
+        USERID = #{record.userid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goodsid != null" >
+        GOODSID = #{record.goodsid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.autiondate != null" >
+        AUTIONDATE = #{record.autiondate,jdbcType=OTHER},
+      </if>
+      <if test="record.userprice != null" >
+        USERPRICE = #{record.userprice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TBAUCTION
+    set AUCTIONID = #{record.auctionid,jdbcType=DECIMAL},
+      USERID = #{record.userid,jdbcType=DECIMAL},
+      GOODSID = #{record.goodsid,jdbcType=DECIMAL},
+      AUTIONDATE = #{record.autiondate,jdbcType=OTHER},
+      USERPRICE = #{record.userprice,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.health.entity.Tbauction" >
+    update TBAUCTION
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsid != null" >
+        GOODSID = #{goodsid,jdbcType=DECIMAL},
+      </if>
+      <if test="autiondate != null" >
+        AUTIONDATE = #{autiondate,jdbcType=OTHER},
+      </if>
+      <if test="userprice != null" >
+        USERPRICE = #{userprice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where AUCTIONID = #{auctionid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.health.entity.Tbauction" >
+    update TBAUCTION
+    set USERID = #{userid,jdbcType=DECIMAL},
+      GOODSID = #{goodsid,jdbcType=DECIMAL},
+      AUTIONDATE = #{autiondate,jdbcType=OTHER},
+      USERPRICE = #{userprice,jdbcType=DECIMAL}
+    where AUCTIONID = #{auctionid,jdbcType=DECIMAL}
+  </update>
+</mapper>
