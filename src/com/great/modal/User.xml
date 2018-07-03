@@ -10,7 +10,7 @@
 
 <!-- 删 -->
 	<delete id="deleteUser" parameterType="int">
-		delete from TBUSER where 水电费
+		delete from TBUSER where 水电费 水电费
 	</delete>
 
 <!-- 改 -->
