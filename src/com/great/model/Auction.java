@@ -68,6 +68,7 @@ public class Auction {
 	 * @param userId the userId to set
 	 */
 	public void setUserId(int userId) {
+		System.out.println(111);
 		this.userId = userId;
 	}
 	/**
