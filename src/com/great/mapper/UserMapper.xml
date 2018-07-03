@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.great.mapper.UserMapper">
+	<select id="findByUser"
+		resultType="com.great.modal.User">
+		SELECT * FROM TBUSER WHERE 1=1 order by USERID ASC
+	</select>
+	<select id="userLogin" parameterType="com.great.modal.User"
+		resultType="com.great.modal.User">
+		SELECT * FROM TBUSER WHERE userName=#{userName} and userPwd=#{userPwd}
+	</select>
+</mapper>

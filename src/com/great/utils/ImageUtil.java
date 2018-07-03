@@ -20,8 +20,8 @@ public final class ImageUtil {
 			'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 	private static final int SIZE = 4;
 	private static final int LINES = 5;
-	private static final int WIDTH = 80;
-	private static final int HEIGHT = 40;
+	private static final int WIDTH = 90;
+	private static final int HEIGHT = 45;
 	private static final int FONT_SIZE = 30;
 
 	/**
@@ -31,8 +31,8 @@ public final class ImageUtil {
 		StringBuffer sb = new StringBuffer();
 		BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics graphic = image.getGraphics();
-		graphic.setColor(Color.LIGHT_GRAY);
-		graphic.fillRect(0, 0, WIDTH, HEIGHT);
+		graphic.setColor(Color.darkGray);
+		/*graphic.fillRect(10, 10, WIDTH, HEIGHT);*/
 		Random ran = new Random();
 		// 画随机字符
 		for (int i = 1; i <= SIZE; i++) {

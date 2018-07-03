@@ -17,6 +17,15 @@
 	type="text/javascript"></script>
 <script src=<%=basePath + "/layui/js/login/login.js"%>
 	type="text/javascript"></script>
+	
+	<script type="text/javascript">
+
+function radomimagecode(click) {
+	//点击随机更换验证码的方法 
+	/* alert(click.src); */
+	click.src = click.src + "?nocache=" + new Date().getTime();
+}
+</script>
 <style type="text/css">
 	ul li{font-size: 30px;color:#2ec0f6;}
 	.tyg-div{z-index:-1000;float:left;position:absolute;left:5%;top:20%;}
@@ -95,17 +104,17 @@
 </div>
 <div class="tyg-div-denglv">
 	<div class="tyg-div-form">
-		<form action=<%=basePath%> id="loginForm" method="post">
+		<form action=<%=basePath+"/user/login.action"%> id="loginForm" method="post">
 			<h2>登录</h2><p class="tyg-p">欢迎访问  智慧能力</p>
 			<div style="margin:5px 0px;">
-				<input style="width:255px;height: 40px;" type="text" placeholder="请输入账号..." id="username-input" name="userName"/>
+				<input style="width:255px;height: 45px;" type="text" placeholder="请输入账号..." id="username-input" name="userName"/>
 			</div>
 			<div style="margin:5px 0px;">
-				<input style="width:255px;height: 40px;" type="password" placeholder="请输入密码..." id="userpwd-input" name="userPsw"/>
+				<input style="width:255px;height: 45px;" type="password" placeholder="请输入密码..." id="userpwd-input" name="userPsw"/>
 			</div>
 			<div style="margin:5px 0px;">
-				<input type="text" style="width:150px;height: 40px;" placeholder="请输入验证码..." id="checkCode" name="verifyCode"/>
-				<img src=<%=basePath + "/login/createImage.action"%> id="image-code" title="点击更换" style="vertical-align:bottom;" onclick="changeCodes()" />
+				<input type="text" style="width:150px;height: 45px;" placeholder="请输入验证码..." id="checkCode" name="code"/>
+				<img src=<%=basePath + "/user/createImage.action"%> id="image-code" title="点击更换" style="vertical-align:bottom;" onclick="radomimagecode(this)" />
 			</div>
 			<button type="submit" >登<span style="width:20px;"></span>录</button>
 		</form>
